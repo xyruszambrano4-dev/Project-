@@ -1,30 +1,19 @@
-# Odd/Even Number Generator
-
 while True:
-    print("Choose an option:")
-    print("1. Show Odd Numbers")
-    print("2. Show Even Numbers")
+    choice = input("Do you want odd or even? ").lower()
+    start = int(input("Enter start of range: "))
+    end = int(input("Enter end of range: "))
 
-    choice = int(input("Enter your choice (1 or 2): "))
-    limit = int(input("Enter the limit number: "))
+    total = 0
+    for num in range(start, end + 1):
+        if choice == "odd" and num % 2 != 0:
+            print(num)
+            total += num
+        elif choice == "even" and num % 2 == 0:
+            print(num)
+            total += num
 
-    if choice == 1:
-        print(f"Odd numbers from 1 to {limit}:")
-        for i in range(1, limit + 1):
-            if i % 2 != 0:
-                print(i, end=" ")
-        print("\n")
+    print("Total of num:", total)
 
-    elif choice == 2:
-        print(f"Even numbers from 1 to {limit}:")
-        for i in range(1, limit + 1):
-            if i % 2 == 0:
-                print(i, end=" ")
-        print("\n")
-
-    else:
-        print("Invalid choice! Please select 1 or 2.\n")
-
-    again = input("Do you want to try again? (yes/no): ")
-    if again.lower() == "no":
+    again = input("\nDo you want to try again? (yes/no): ").lower()
+    if again == "no":
         break
