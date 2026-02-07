@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Café Resto</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f5efe8;
+      color: #2a2420;
+      font-family: Arial, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #f5efe8;
+    }
+
+    .nav-link {
+      color: #2a2420;
+      font-size: 14px;
+    }
+
+    /* Buttons */
+    .btn-dark {
+      border-radius: 30px;
+      padding: 8px 22px;
+    }
+
+    #orderBtn {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    #orderBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 90px 0;
+      background-color: #eee5da;
+    }
+
+    .hero h1 {
+      font-size: 44px;
+      font-weight: 600;
+      animation: fadeDown 1s ease forwards;
+    }
+
+    .hero p, .hero button {
+      animation: fadeUp 1s ease forwards;
+      animation-delay: 0.2s;
+      opacity: 0;
+    }
+
+    .hero img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
+    }
+
+    /* Cards */
+    .card {
+      border: none;
+      border-radius: 18px;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.8s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+    }
+
+    .card img {
+      border-radius: 18px 18px 0 0;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    /* Modal animation */
+    .animate-modal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+    }
+
+    .modal.show .animate-modal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    footer {
+      border-top: 1px solid #ddd;
+      color: #6b625c;
+      font-size: 13px;
+      padding: 30px 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg py-3">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" href="#">Café Resto</a>
+    <div class="ms-auto">
+      <a class="nav-link d-inline me-3" href="#">Home</a>
+      <a class="nav-link d-inline me-3" href="#">Menu</a>
+      <a class="nav-link d-inline me-3" href="#">Services</a>
+      <button class="btn btn-dark">Order</button>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-md-6">
+        <h1>Café Resto</h1>
+        <p class="mt-3">
+          A simple and elegant café offering quality coffee, desserts, and meals.
+          Focused on comfort and thoughtful service.
+        </p>
+        <button class="btn btn-dark mt-3">View Menu</button>
+      </div>
+      <div class="col-md-6">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="Coffee">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="py-5">
+  <div class="container">
+    <h3 class="text-center mb-4">Our Products</h3>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card animate product"
+             data-name="Fresh Pastry"
+             data-ingredients="Flour, Butter, Milk, Sugar, Yeast, Eggs">
+          <img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f" alt="Pastry">
+          <div class="card-body text-center">
+            <h6>Fresh Pastry</h6>
+            <p class="text-muted small">Baked daily with quality ingredients.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card animate product"
+             data-name="Chocolate Cake"
+             data-ingredients="Cocoa Powder, Flour, Eggs, Sugar, Butter, Milk">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Cake">
+          <div class="card-body text-center">
+            <h6>Chocolate Cake</h6>
+            <p class="text-muted small">Rich and smooth dessert.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card animate product"
+             data-name="House Coffee"
+             data-ingredients="Arabica Coffee Beans, Filtered Water">
+          <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Coffee cup">
+          <div class="card-body text-center">
+            <h6>House Coffee</h6>
+            <p class="text-muted small">Freshly brewed premium beans.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h3 class="text-center mb-4">Our Services</h3>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card animate p-4 text-center">
+          <h6>Dine In</h6>
+          <p class="text-muted small">Relax and enjoy a comfortable café experience.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card animate p-4 text-center">
+          <h6>Take Out</h6>
+          <p class="text-muted small">Quick service for customers on the go.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card animate p-4 text-center">
+          <h6>Online Ordering</h6>
+          <p class="text-muted small">Order ahead and pick up anytime.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ingredient Modal -->
+<div class="modal fade" id="ingredientModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 p-4 animate-modal">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title" id="modalTitle"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body pt-2">
+        <p><strong>Ingredients:</strong></p>
+        <ul id="ingredientList"></ul>
+        <button class="btn btn-dark mt-3 w-100" id="orderBtn">Order Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center">
+  © 2026 Café Resto
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Scroll Animation Script -->
+<script>
+const cards = document.querySelectorAll('.animate');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('show');
+  });
+}, { threshold: 0.2 });
+cards.forEach(card => observer.observe(card));
+</script>
+
+<!-- Modal Product Script -->
+<script>
+const products = document.querySelectorAll('.product');
+const modalTitle = document.getElementById('modalTitle');
+const ingredientList = document.getElementById('ingredientList');
+const orderBtn = document.getElementById('orderBtn');
+
+products.forEach(product => {
+  product.addEventListener('click', () => {
+    modalTitle.textContent = product.dataset.name;
+    ingredientList.innerHTML = '';
+    const ingredients = product.dataset.ingredients.split(',');
+    ingredients.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.trim();
+      ingredientList.appendChild(li);
+    });
+
+    const modalEl = document.getElementById('ingredientModal');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+
+    orderBtn.onclick = () => {
+      alert(`You ordered: ${product.dataset.name}`);
+      modal.hide();
+    };
+  });
+});
+</script>
+
+</body>
+</html>
